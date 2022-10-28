@@ -8,7 +8,10 @@ const BurgerSceen = () => {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [data2, setData2] = useState([]);
-  const [city, setCity] = useState("");
+  const [city, setCity] = useState({
+    "lat": 0,
+    "lng": 0
+  });
   const [isLoading, setIsLoading] = useState(false);
 
   // let long = run;
@@ -22,7 +25,7 @@ const BurgerSceen = () => {
 
     const fetchData = async () => {
       await fetch(
-        "http://92.204.170.218/jdb/index.php/api/en/v3/listing/premium/all?os=android&city_id=5&lat=0&lng=0&nearby=true",
+        `http://92.204.170.218/jdb/index.php/api/en/v3/listing/premium/all?os=android&city_id=5&lat=${city.lat}&lng=${city.lng}&nearby=true`,
         {
           method: "GET",
           headers: {
@@ -34,16 +37,16 @@ const BurgerSceen = () => {
       )
         .then((res) => res.json())
         .then((data) => {
-          if (city === "") {
+          //if (city === "") {
             setData(data.results);
             setIsLoading(false);
-          } else {
-            const filterData = data.results.filter((data) =>
-              data.location.includes(city)
-            );
-            setData(filterData);
-            setIsLoading(false);
-          }
+          //} else {
+          //   const filterData = data.results.filter((data) =>
+          //     data.location.includes(city)
+          //   );
+          //   setData(filterData);
+          //   setIsLoading(false);
+          // }
         })
 
         .catch((err) => console.log("api error " + err));
