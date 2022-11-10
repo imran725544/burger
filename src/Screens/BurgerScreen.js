@@ -28,7 +28,7 @@ const BurgerSceen = () => {
 
     const fetchData = async () => {
       await fetch(
-        `http://92.204.170.218/jdb/index.php/api/en/v3/listing/premium/all?os=android&city_id=5&lat=${city.lat}&lng=${city.lng}&nearby=true`,
+        `http://92.204.170.218/jdb/index.php/api/en/v3/listing/premium/all?os=android&city_id=${city.id}&lat=${city.lat}&lng=${city.lng}&nearby=true`,
         {
           method: "GET",
           headers: {
